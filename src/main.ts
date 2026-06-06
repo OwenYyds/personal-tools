@@ -169,7 +169,6 @@ app.innerHTML = `
         <div class="tool-popup-body">
           <div class="tool-popup-body-head">
             <strong>命令代码块</strong>
-            <span>每条命令都可以单独复制</span>
           </div>
           <div class="tool-popup-command-list" id="tool-popup-command-list"></div>
         </div>
