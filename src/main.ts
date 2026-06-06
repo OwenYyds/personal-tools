@@ -251,7 +251,9 @@ const openPopup = (toolIndex: number) => {
             command.value
           )}">复制</button>
               </div>
-              <pre><code>${escapeHtml(command.value)}</code></pre>
+              <pre class="tool-popup-command-code"><code>${escapeHtml(
+                command.value
+              )}</code></pre>
             </article>
           `
         )

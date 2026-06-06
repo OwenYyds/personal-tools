@@ -523,7 +523,7 @@
     margin: 0;
     padding: 14px 16px;
     border-radius: 14px;
-    overflow-x: auto;
+    overflow: hidden;
     background: rgba(22, 21, 19, 0.94);
     color: #f8f5ef;
     font-family: "SFMono-Regular", ui-monospace, "Cascadia Mono",
@@ -534,6 +534,13 @@
 
   .tool-popup-command-card code {
     font-family: inherit;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .tool-popup-command-code {
+    width: 100%;
   }
 
   .tool-popup-empty {
