@@ -1,301 +1,12 @@
 import "./style.css";
 
-type CommandSnippet = {
-  label: string;
-  value: string;
-  note?: string;
-};
-
-type Tool = {
-  name: string;
-  description: string;
-  href: string;
-  label: string;
-  accent: string;
-  commands?: CommandSnippet[];
-};
-
-type Section = {
-  title: string;
-  subtitle: string;
-  items: Tool[];
-};
+import { quickLinks, sections } from "./content";
 
 type FlowStep = {
   id: string;
   title: string;
   subtitle: string;
 };
-
-const sections: Section[] = [
-  {
-    title: "基础必备",
-    subtitle: "新电脑第一时间常用的浏览器、系统和安装工具。",
-    items: [
-      {
-        name: "Google Chrome",
-        description: "主力浏览器，适合同步账号和扩展插件。",
-        href: "https://www.google.com/chrome/",
-        label: "浏览器",
-        accent: "from-sky-400 to-cyan-300",
-      },
-      {
-        name: "Microsoft Edge",
-        description: "备用浏览器，适合工作和兼容性测试。",
-        href: "https://www.microsoft.com/edge",
-        label: "浏览器",
-        accent: "from-blue-500 to-indigo-400",
-      },
-      {
-        name: "Homebrew",
-        description: "macOS 下最常见的命令行安装入口。",
-        href: "https://brew.sh/",
-        label: "系统工具",
-        accent: "from-emerald-400 to-lime-300",
-        commands: [
-          {
-            label: "安装脚本",
-            value:
-              '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
-            note: "Homebrew 官方安装命令。",
-          },
-          {
-            label: "升级包索引",
-            value: "brew update",
-            note: "安装完成后常用的更新命令。",
-          },
-        ],
-      },
-      {
-        name: "7-Zip",
-        description: "通用压缩解压工具，兼容各种归档格式。",
-        href: "https://www.7-zip.org/",
-        label: "压缩工具",
-        accent: "from-amber-400 to-orange-300",
-      },
-    ],
-  },
-  {
-    title: "效率工具",
-    subtitle: "把日常输入、笔记、阅读和处理信息的路径集中起来。",
-    items: [
-      {
-        name: "Raycast",
-        description: "强力启动器，可扩展快捷命令和自动化流程。",
-        href: "https://www.raycast.com/",
-        label: "启动器",
-        accent: "from-violet-500 to-indigo-300",
-      },
-      {
-        name: "Notion",
-        description: "资料库、任务和项目记录的统一入口。",
-        href: "https://www.notion.so/",
-        label: "笔记",
-        accent: "from-stone-500 to-neutral-300",
-      },
-      {
-        name: "Obsidian",
-        description: "适合本地知识管理和双链笔记。",
-        href: "https://obsidian.md/",
-        label: "笔记",
-        accent: "from-slate-500 to-cyan-300",
-      },
-      {
-        name: "DeepL",
-        description: "翻译和写作辅助，适合处理多语言内容。",
-        href: "https://www.deepl.com/translator",
-        label: "翻译",
-        accent: "from-sky-500 to-emerald-300",
-      },
-      {
-        name: "Feishu",
-        description: "团队协作、文档和会议入口。",
-        href: "https://www.feishu.cn/",
-        label: "协作",
-        accent: "from-blue-400 to-cyan-300",
-      },
-      {
-        name: "腾讯会议",
-        description: "会议沟通的常用入口。",
-        href: "https://meeting.tencent.com/",
-        label: "会议",
-        accent: "from-teal-400 to-sky-300",
-      },
-    ],
-  },
-  {
-    title: "开发工具",
-    subtitle: "如果这台电脑还会用来开发，这里保留常见的安装和站点入口。",
-    items: [
-      {
-        name: "Visual Studio Code",
-        description: "轻量主力编辑器，后续可作为工具站核心入口。",
-        href: "https://code.visualstudio.com/",
-        label: "编辑器",
-        accent: "from-cyan-400 to-blue-300",
-      },
-      {
-        name: "GitHub",
-        description: "代码托管、项目管理和扩展插件下载。",
-        href: "https://github.com/",
-        label: "代码托管",
-        accent: "from-zinc-500 to-slate-300",
-      },
-      {
-        name: "Docker Desktop",
-        description: "本地容器环境和服务编排。",
-        href: "https://www.docker.com/products/docker-desktop/",
-        label: "容器",
-        accent: "from-sky-500 to-cyan-300",
-      },
-      {
-        name: "Node.js",
-        description: "前端与脚本生态的基础运行时。",
-        href: "https://nodejs.org/",
-        label: "运行时",
-        accent: "from-emerald-500 to-lime-300",
-      },
-      {
-        name: "Python",
-        description: "适合自动化、脚本和数据处理。",
-        href: "https://www.python.org/",
-        label: "运行时",
-        accent: "from-yellow-400 to-amber-300",
-      },
-      {
-        name: "Postman",
-        description: "接口调试和 API 管理工具。",
-        href: "https://www.postman.com/",
-        label: "接口",
-        accent: "from-orange-400 to-rose-300",
-      },
-    ],
-  },
-  {
-    title: "Windows",
-    subtitle: "Windows 设备上的官方授权和常用入口，集中放在一个分区里。",
-    items: [
-      {
-        name: "Windows 官方激活",
-        description:
-          "仅适用于你已经购买授权的 Windows 设备，可在这里放置产品密钥和官方激活流程。",
-        href: "https://support.microsoft.com/windows/activate-windows",
-        label: "授权",
-        accent: "from-orange-400 to-rose-300",
-        commands: [
-          {
-            label: "安装产品密钥",
-            value: "slmgr /ipk YOUR-PRODUCT-KEY",
-            note: "替换为你合法购买的产品密钥。",
-          },
-          {
-            label: "联机激活",
-            value: "slmgr /ato",
-            note: "完成密钥安装后再执行。",
-          },
-        ],
-      },
-      {
-        name: "Office 官方入口",
-        description:
-          "适用于 Microsoft 365 或零售版 Office 的官方登录和部署入口。",
-        href: "https://www.office.com/",
-        label: "授权",
-        accent: "from-sky-500 to-cyan-300",
-        commands: [
-          {
-            label: "登录入口",
-            value: "start https://www.office.com/",
-            note: "在 Windows 终端中打开官方登录页。",
-          },
-          {
-            label: "产品密钥兑换",
-            value: "start https://setup.office.com/",
-            note: "使用你的 Microsoft 账户完成兑换或安装。",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "macOS",
-    subtitle: "macOS 上最常用的安装、清理和窗口管理工具。",
-    items: [
-      {
-        name: "Homebrew",
-        description: "macOS 下最常见的命令行安装入口。",
-        href: "https://brew.sh/",
-        label: "系统工具",
-        accent: "from-emerald-400 to-lime-300",
-        commands: [
-          {
-            label: "安装脚本",
-            value:
-              '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
-            note: "Homebrew 官方安装命令。",
-          },
-          {
-            label: "升级包索引",
-            value: "brew update",
-            note: "安装完成后常用的更新命令。",
-          },
-        ],
-      },
-      {
-        name: "AppCleaner",
-        description: "卸载应用时清理残留文件。",
-        href: "https://freemacsoft.net/appcleaner/",
-        label: "系统工具",
-        accent: "from-zinc-400 to-stone-300",
-        commands: [
-          {
-            label: "启动应用",
-            value: "open -a AppCleaner",
-            note: "从终端直接打开 AppCleaner。",
-          },
-        ],
-      },
-      {
-        name: "Rectangle",
-        description: "窗口管理工具，快速整理桌面布局。",
-        href: "https://rectangleapp.com/",
-        label: "窗口管理",
-        accent: "from-violet-400 to-fuchsia-300",
-        commands: [
-          {
-            label: "启动应用",
-            value: "open -a Rectangle",
-            note: "从终端直接打开 Rectangle。",
-          },
-        ],
-      },
-    ],
-  },
-];
-
-const quickLinks: Tool[] = [
-  {
-    name: "App Store",
-    description: "macOS 官方应用下载中心。",
-    href: "https://www.apple.com/app-store/",
-    label: "官方",
-    accent: "from-slate-500 to-zinc-300",
-  },
-  {
-    name: "Download Portal",
-    description: "未来可替换成你的个人下载/分发入口。",
-    href: "#catalog",
-    label: "入口",
-    accent: "from-indigo-500 to-violet-300",
-  },
-  {
-    name: "Bookmark Hub",
-    description: "预留给更多常用站点分类。",
-    href: "#catalog",
-    label: "扩展",
-    accent: "from-emerald-500 to-cyan-300",
-  },
-];
 
 const catalogTools = sections.flatMap((section) => section.items);
 const flowSteps: FlowStep[] = sections.map((section, index) => ({
@@ -392,19 +103,6 @@ app.innerHTML = `
       </div>
     </nav>
 
-    <section class="detail-panel" id="tool-detail" aria-live="polite">
-      <div class="detail-panel-head">
-        <div>
-          <p class="eyebrow">Tool Detail</p>
-          <h2 id="detail-title"></h2>
-          <p class="detail-meta" id="detail-meta"></p>
-        </div>
-        <a class="detail-link" id="detail-link" href="#" target="_blank" rel="noreferrer">打开链接</a>
-      </div>
-      <p class="detail-description" id="detail-description"></p>
-      <div class="command-list" id="detail-commands"></div>
-    </section>
-
     <section class="catalog" id="catalog">
       <div class="section-head">
         <p class="eyebrow">Tool Catalog</p>
@@ -440,7 +138,6 @@ app.innerHTML = `
                             </div>
                             <h4>${tool.name}</h4>
                             <p>${tool.description}</p>
-                            <span class="tool-card-cta">点击查看命令</span>
                           </div>
                         </button>
                       `;
@@ -454,19 +151,46 @@ app.innerHTML = `
       </div>
     </section>
 
-    <footer class="footer-note">
-      <p>这个首页现在是纯前端静态页面，后续可以很容易加入搜索、收藏、拖拽排序和动画过渡。</p>
-    </footer>
+    <div class="tool-popup" id="tool-popup" aria-hidden="true">
+      <div class="tool-popup-backdrop" data-popup-close></div>
+      <section class="tool-popup-dialog" role="dialog" aria-modal="true" aria-labelledby="tool-popup-title">
+        <div class="tool-popup-head">
+          <div>
+            <p class="eyebrow">Tool Popup</p>
+            <h2 id="tool-popup-title"></h2>
+            <p class="tool-popup-meta" id="tool-popup-meta"></p>
+          </div>
+          <button class="tool-popup-close" type="button" data-popup-close aria-label="关闭弹窗">×</button>
+        </div>
+        <p class="tool-popup-description" id="tool-popup-description"></p>
+        <div class="tool-popup-actions">
+          <a class="tool-popup-link" id="tool-popup-link" href="#" target="_blank" rel="noreferrer">转到官方网站</a>
+        </div>
+        <div class="tool-popup-body">
+          <div class="tool-popup-body-head">
+            <strong>命令代码块</strong>
+            <span>每条命令都可以单独复制</span>
+          </div>
+          <div class="tool-popup-command-list" id="tool-popup-command-list"></div>
+        </div>
+      </section>
+    </div>
   </main>
 `;
 
-const detailTitle = app.querySelector<HTMLHeadingElement>("#detail-title");
-const detailMeta = app.querySelector<HTMLParagraphElement>("#detail-meta");
-const detailDescription = app.querySelector<HTMLParagraphElement>(
-  "#detail-description"
+const popup = app.querySelector<HTMLDivElement>("#tool-popup");
+const popupTitle = app.querySelector<HTMLHeadingElement>("#tool-popup-title");
+const popupMeta = app.querySelector<HTMLParagraphElement>("#tool-popup-meta");
+const popupDescription = app.querySelector<HTMLParagraphElement>(
+  "#tool-popup-description"
 );
-const detailLink = app.querySelector<HTMLAnchorElement>("#detail-link");
-const detailCommands = app.querySelector<HTMLDivElement>("#detail-commands");
+const popupLink = app.querySelector<HTMLAnchorElement>("#tool-popup-link");
+const popupCommandList = app.querySelector<HTMLDivElement>(
+  "#tool-popup-command-list"
+);
+const popupCloseButtons = Array.from(
+  app.querySelectorAll<HTMLButtonElement>("[data-popup-close]")
+);
 const flowButtons = Array.from(
   app.querySelectorAll<HTMLButtonElement>("[data-flow-index]")
 );
@@ -478,13 +202,14 @@ const toolButtons = Array.from(
 );
 
 if (
-  !detailTitle ||
-  !detailMeta ||
-  !detailDescription ||
-  !detailLink ||
-  !detailCommands
+  !popup ||
+  !popupTitle ||
+  !popupMeta ||
+  !popupDescription ||
+  !popupLink ||
+  !popupCommandList
 ) {
-  throw new Error("Tool detail elements not found");
+  throw new Error("Tool popup elements not found");
 }
 
 const setActiveFlowStep = (stepIndex: number) => {
@@ -494,37 +219,35 @@ const setActiveFlowStep = (stepIndex: number) => {
   });
 };
 
-const setActiveTool = (toolIndex: number) => {
+const closePopup = () => {
+  popup.dataset.open = "false";
+  popup.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("no-scroll");
+};
+
+const openPopup = (toolIndex: number) => {
   const tool = catalogTools[toolIndex];
 
   if (!tool) {
     return;
   }
 
-  detailTitle.textContent = tool.name;
-  detailMeta.textContent = `分类：${tool.label} · 命令片段可自定义`;
-  detailDescription.textContent = tool.description;
-  detailLink.href = tool.href;
+  popupTitle.textContent = tool.name;
+  popupMeta.textContent = `分类：${tool.label} · 命令独立成块，随时可复制`;
+  popupDescription.textContent = tool.description;
+  popupLink.href = tool.href;
 
-  detailCommands.innerHTML = tool.commands?.length
+  popupCommandList.innerHTML = tool.commands?.length
     ? tool.commands
         .map(
           (command, commandIndex) => `
-            <article class="command-card">
-              <div class="command-card-head">
+            <article class="tool-popup-command-card">
+              <div class="tool-popup-command-head">
                 <div>
-                  <span class="command-label">${escapeHtml(
-                    command.label
-                  )}</span>
-                  ${
-                    command.note
-                      ? `<p class="command-note">${escapeHtml(
-                          command.note
-                        )}</p>`
-                      : ""
-                  }
+                  <strong>${escapeHtml(command.label)}</strong>
+                  ${command.note ? `<p>${escapeHtml(command.note)}</p>` : ""}
                 </div>
-                <button class="command-copy" type="button" data-copy-command="${toolIndex}-${commandIndex}" data-command-value="${encodeURIComponent(
+                <button class="tool-popup-command-copy" type="button" data-copy-command="${toolIndex}-${commandIndex}" data-command-value="${escapeHtml(
             command.value
           )}">复制</button>
               </div>
@@ -534,22 +257,21 @@ const setActiveTool = (toolIndex: number) => {
         )
         .join("")
     : `
-      <div class="command-empty">
-        <strong>这个工具还没有配置命令片段。</strong>
-        <p>你可以继续往数据里补充自己的命令行内容，这一块会直接显示在这里。</p>
+      <div class="tool-popup-empty">
+        <strong>这个工具还没有配置命令。</strong>
+        <p>你可以先转到官方网站，或者后续在数据文件里补充一条可复制命令。</p>
       </div>
     `;
 
-  toolButtons.forEach((button) => {
-    button.dataset.active =
-      button.dataset.toolIndex === String(toolIndex) ? "true" : "false";
-  });
+  popup.dataset.open = "true";
+  popup.setAttribute("aria-hidden", "false");
+  document.body.classList.add("no-scroll");
 };
 
 toolButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const toolIndex = Number(button.dataset.toolIndex);
-    setActiveTool(toolIndex);
+    openPopup(toolIndex);
   });
 });
 
@@ -593,7 +315,19 @@ if (flowSectionsDom.length > 0 && "IntersectionObserver" in window) {
   setActiveFlowStep(0);
 }
 
-detailCommands.addEventListener("click", async (event) => {
+popupCloseButtons.forEach((button) => {
+  button.addEventListener("click", closePopup);
+});
+
+popup.addEventListener("click", (event) => {
+  const target = event.target as HTMLElement | null;
+
+  if (target?.dataset.popupClose !== undefined) {
+    closePopup();
+  }
+});
+
+popupCommandList.addEventListener("click", async (event) => {
   const target = event.target as HTMLElement | null;
   const button = target?.closest<HTMLButtonElement>("[data-copy-command]");
 
@@ -601,14 +335,14 @@ detailCommands.addEventListener("click", async (event) => {
     return;
   }
 
-  const encodedValue = button.dataset.commandValue;
+  const commandValue = button.dataset.commandValue;
 
-  if (!encodedValue) {
+  if (!commandValue) {
     return;
   }
 
   try {
-    await navigator.clipboard.writeText(decodeURIComponent(encodedValue));
+    await navigator.clipboard.writeText(commandValue);
     button.textContent = "已复制";
     window.setTimeout(() => {
       button.textContent = "复制";
@@ -621,4 +355,10 @@ detailCommands.addEventListener("click", async (event) => {
   }
 });
 
-setActiveTool(0);
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && popup.dataset.open === "true") {
+    closePopup();
+  }
+});
+
+popup.dataset.open = "false";
