@@ -5,7 +5,7 @@ export const windowsSection: Section = {
   subtitle: "Windows 设备上的官方授权和常用入口，集中放在一个分区里。",
   items: [
     {
-      name: "Windows 官方激活",
+      name: "Windows激活",
       description:
         "仅适用于你已经购买授权的 Windows 设备，可在这里放置产品密钥和官方激活流程。",
       href: "https://support.microsoft.com/windows/activate-windows",
@@ -13,14 +13,14 @@ export const windowsSection: Section = {
       accent: "from-orange-400 to-rose-300",
       commands: [
         {
-          label: "安装产品密钥",
-          value: "slmgr /ipk YOUR-PRODUCT-KEY",
-          note: "替换为你合法购买的产品密钥。",
+          label: "离线安装",
+          value: "https://massgrave.dev",
+          note: "跳转到网页下载激活脚本",
         },
         {
           label: "联机激活",
-          value: "slmgr /ato",
-          note: "完成密钥安装后再执行。",
+          value: "irm https://massgrave.dev/get | iex",
+          note: "可能需要代理",
         },
       ],
     },

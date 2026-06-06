@@ -48,9 +48,7 @@ app.innerHTML = `
         <p class="eyebrow">Personal Tools</p>
         <h1>一页集中管理你的常用安装工具和入口站点</h1>
         <p class="hero-text">
-          这是一个静态工具首页，先把新电脑初始化时最常用的软件、站点和服务入口放在一起。
-          后续新增工具时，只需要往数据里继续加卡片即可。
-        </p>
+       </p>
         <div class="hero-actions">
           <a class="primary-action" href="#catalog">查看工具分类</a>
           <a class="secondary-action" href="https://www.apple.com/app-store/" target="_blank" rel="noreferrer">打开 App Store</a>
